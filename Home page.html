@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Main page</h1>
+    Name: <p id="name"></p>
+    Surname: <p id="surname"></p>
+    Age: <p id="age"></p>
+
+    <button onclick="logOut()">logOut</button>
+    <button onclick="deleteAcc()">delete Acc</button>
+    
+    <script>
+        if(!localStorage)
+        getCurrentUser() 
+        function getCurrentUser() {
+            let currentUser = JSON.parse(localStorage.getItem("currentUser"))
+            let nameE1 = document.querySelector("#name")                               // ------------получаем  элемент  нэйм
+            nameE1textContect = currentUser.name                                      //  -----------текст контент-то что находится  в этом элементе и записываем  имя, в дом  обращаемся сверху на мэйн 
+            let surnameE1 = document.querySelector("@surname")
+            surnameE1.textContent = currentUser.surname
+            let ageE1 = document.querySelector("#age")
+            ageE1.textContent = currentUser.age
+        }
+
+        function logOut() {
+            localStorage.removeItem("currentUser")
+            window.location.href = 'login.html'
+        }
+
+        function deleteAcc() {
+            let users = localStorage.getItem("usres")
+            let currentUser = localStorage.getItem("currentUser")
+            localStorage.setItem("users", JSON.stringify(
+                users.filter(user => user.email != currentUser.email)
+            ))
+            logOut()
+        }
+        
+    </script>
+</body>
+</html>
